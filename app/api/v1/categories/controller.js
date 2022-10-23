@@ -1,11 +1,11 @@
-const { StatusCodes } = require("http-status-codes");
+const { StatusCodes } = require('http-status-codes');
 const {
   getAllCategories,
   createCategories,
   getOneCategories,
   updateCategories,
   deleteCategories,
-} = require("../../../services/mongoose/categories");
+} = require('../../../services/mongoose/categories');
 
 const create = async (req, res, next) => {
   try {
@@ -21,7 +21,7 @@ const create = async (req, res, next) => {
 
 const index = async (req, res, next) => {
   try {
-    const result = await getAllCategories();
+    const result = await getAllCategories(req);
 
     res.status(StatusCodes.OK).json({
       data: result,

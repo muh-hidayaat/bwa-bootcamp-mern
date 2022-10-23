@@ -1,17 +1,17 @@
-const User = require("../../api/v1/users/model");
-const Organizers = require("../../api/v1/organizers/model");
-const { BadRequestError } = require("../../errors");
+const Users = require('../../api/v1/users/model');
+const Organizers = require('../../api/v1/organizers/model');
+const { BadRequestError } = require('../../errors');
 
 const createOrganizer = async (req) => {
   const { organizer, role, email, password, confirmPassword, name } = req.body;
 
   if (password != confirmPassword) {
-    throw new BadRequestError("Konfirmasi password salah");
+    throw new BadRequestError('Konfirmasi password salah');
   }
 
   const result = await Organizers.create({ organizer });
 
-  const users = await User.create({
+  const users = await Users.create({
     email,
     name,
     password,
@@ -24,4 +24,22 @@ const createOrganizer = async (req) => {
   return users;
 };
 
-module.exports = { createOrganizer };
+const createUsers = async (req, res) => {
+  const { name, password, role, confirmPassword, email } = req.body;
+
+  if (password !== confirmPassword) {
+    throw new BadRequestError('Konfirmasi password salah');
+  }
+
+  const result = await Users.create({
+    name,
+    email,
+    organizer: req.user.organizer,
+    password,
+    role,
+  });
+
+  return result;
+};
+
+module.exports = { createOrganizer, createUsers };
