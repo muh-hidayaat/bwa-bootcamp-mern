@@ -1,7 +1,7 @@
 const {
   signupParticipant,
-  // activateParticipant,
-  // signinParticipant,
+  activateParticipant,
+  signinParticipant,
   // getAllEvents,
   // getOneEvent,
   // getAllOrders,
@@ -21,29 +21,29 @@ const signup = async (req, res, next) => {
   }
 };
 
-// const activeParticipant = async (req, res, next) => {
-//   try {
-//     const result = await activateParticipant(req);
+const activeParticipant = async (req, res, next) => {
+  try {
+    const result = await activateParticipant(req);
 
-//     res.status(StatusCodes.OK).json({
-//       data: { token: result },
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+    res.status(StatusCodes.OK).json({
+      data: { token: result },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
-// const signin = async (req, res, next) => {
-//   try {
-//     const result = await signinParticipant(req);
+const signin = async (req, res, next) => {
+  try {
+    const result = await signinParticipant(req);
 
-//     res.status(StatusCodes.OK).json({
-//       data: { token: result },
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+    res.status(StatusCodes.OK).json({
+      data: { token: result },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 // const getAllLandingPage = async (req, res, next) => {
 //   try {
@@ -82,8 +82,8 @@ const signup = async (req, res, next) => {
 
 module.exports = {
   signup,
-  // activeParticipant,
-  // signin,
+  activeParticipant,
+  signin,
   // getAllLandingPage,
   // getDetailLandingPage,
   // getDashboard,
