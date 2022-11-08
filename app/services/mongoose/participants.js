@@ -95,34 +95,34 @@ const signinParticipant = async (req) => {
   return token;
 };
 
-// const getAllEvents = async (req) => {
-//   const result = await Events.find({ statusEvent: 'Published' })
-//     .populate('category')
-//     .populate('image')
-//     .select('_id title date tickets venueName');
+const getAllEvents = async (req) => {
+  const result = await Events.find({ statusEvent: 'Published' })
+    .populate('category')
+    .populate('image')
+    .select('_id title date tickets venueName');
 
-//   return result;
-// };
+  return result;
+};
 
-// const getOneEvent = async (req) => {
-//   const result = await Events.findOne({ _id: req.params.id })
-//     .populate('category')
-//     .populate('talent')
-//     .populate('image');
+const getOneEvent = async (req) => {
+  const result = await Events.findOne({ _id: req.params.id })
+    .populate('category')
+    .populate('talent')
+    .populate('image');
 
-//   return result;
-// };
+  return result;
+};
 
-// const getAllOrders = async (req) => {
-//   const result = await Orders.find({ participant: req.user.id });
-//   return result;
-// };
+const getAllOrders = async (req) => {
+  const result = await Orders.find({ participant: req.participant.id });
+  return result;
+};
 
 module.exports = {
   signupParticipant,
   activateParticipant,
   signinParticipant,
-  // getAllEvents,
-  // getOneEvent,
-  // getAllOrders,
+  getAllEvents,
+  getOneEvent,
+  getAllOrders,
 };
